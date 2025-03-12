@@ -26,7 +26,7 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: update cluster infomation
-        run: aws eks update-kubeconfig --name 2team-cluster --region ap-northeast-2
+        run: aws eks update-kubeconfig --name yi-cluster --region ap-northeast-2
 
       - name: Login to ECR
         id: login-ecr
@@ -34,8 +34,8 @@ jobs:
 
       - name: build and push docker image to ecr
         env:
-          REGISTRY: 346903264902.dkr.ecr.ap-northeast-2.amazonaws.com
-          REPOSITORY: 01-order-backend
+          REGISTRY: 207567779062.dkr.ecr.ap-northeast-2.amazonaws.com
+          REPOSITORY: yi-order-backend
           IMAGE_TAG: latest
         run: |
           docker build \
@@ -46,4 +46,4 @@ jobs:
       - name: eks kubectl apply
         run: |
           kubectl apply -f ./4.ordersystem/k8s/depl_svc.yml
-          kubectl rollout restart deployment 01-order-backend -n youngil-ns
+          kubectl rollout restart deployment yi-order-backend -n youngil-ns
