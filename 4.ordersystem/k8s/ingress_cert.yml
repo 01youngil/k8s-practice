@@ -20,7 +20,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: 01-order-backend-service
+            name: yi-order-backend-service
             port:
               number: 80
 
