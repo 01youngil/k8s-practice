@@ -4,7 +4,7 @@ metadata:
   name: yi-msa-ordering-depl
   namespace: youngil-ns
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: yi-msa-ordering
