@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 // name은 유레카의 service명이고, url은 쿠버네티스의 서비스명
-@FeignClient(name = "product-service", url="yi-msa-product-service", configuration = FeignTokenConfig.class)
+@FeignClient(name = "product-service", url="http://yi-msa-product-service", configuration = FeignTokenConfig.class)
 public interface ProductFeign {
     @GetMapping(value = "/product/{id}")
     ProductDto getProductById(@PathVariable Long id);
