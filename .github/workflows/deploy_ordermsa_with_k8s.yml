@@ -65,7 +65,7 @@ jobs:
 
       - name: eks kubectl apply
         run: |
-          kubectl apply -f ./.msa/ordering/k8s/depl_svc.yml
+          kubectl apply -f ./5.msa/ordering/k8s/depl_svc.yml
           kubectl rollout restart deployment yi-msa-ordering-depl -n youngil-ns
 
 
@@ -83,5 +83,5 @@ jobs:
 
       - name: eks kubectl apply
         run: |
-          kubectl apply -f ./.msa/product/k8s/depl_svc.yml
+          kubectl apply -f ./5.msa/product/k8s/depl_svc.yml
           kubectl rollout restart deployment yi-msa-product-depl -n youngil-ns
