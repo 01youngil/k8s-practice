@@ -47,7 +47,7 @@ jobs:
 
       - name: eks kubectl apply
         run: |
-          kubectl apply -f ./.msa/member/k8s/depl_svc.yml
+          kubectl apply -f ./5.msa/member/k8s/depl_svc.yml
           kubectl rollout restart deployment yi-msa-member-depl -n youngil-ns
 
 

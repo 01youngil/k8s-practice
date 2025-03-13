@@ -1,6 +1,5 @@
 package com.example.ordersystem.common.service;
 
-import com.example.ordersystem.common.config.RabbitmqConfig;
 import com.example.ordersystem.common.dto.StockRabbitDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
