@@ -110,6 +110,8 @@ public class ProductService {
 
     @KafkaListener(topics = "update-stock-topic", groupId = "product-group", containerFactory = "kafkaListener")
     public void productConsumer(String message){
+        
+        System.out.println("컨슈머 메시지 수신 start ");
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             ProductUpdateStockDto dto = objectMapper.readValue(message, ProductUpdateStockDto.class);

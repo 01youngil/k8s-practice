@@ -23,7 +23,6 @@ spec:
             name: yi-msa-member-service
             port:
               number: 80
-      paths:
       - path: /ordering-service/(.*) #모든 url요청을 nginx-service로 라우팅
         pathType: Prefix
         backend:
@@ -31,7 +30,6 @@ spec:
             name: yi-msa-ordering-service
             port:
               number: 80
-      paths:
       - path: /product-service/(.*) #모든 url요청을 nginx-service로 라우팅
         pathType: Prefix
         backend:
