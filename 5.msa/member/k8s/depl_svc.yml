@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yi-msa-member-depl
+  namespace: youngil-ns
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: yi-msa-member
+  template:
+    metadata:
+      labels:
+        app: yi-msa-member
+    spec:
+      containers:
+      - name: yi-member-backend
+        image: 346903264902.dkr.ecr.ap-northeast-2.amazonaws.com/yi-msa-member:latest
+        ports:
+        - containerPort: 8080 # 스프링에서 쓰는 포트번호
+        env:
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: yi-app-secrets  # 노션에 만드는 명령어 있음.
+              key: DB_HOST #명령어 통해서 사용할 것들임임
+        - name: DB_PW #application.yml에서 찾는 지표
+          valueFrom:
+            secretKeyRef:
+              name: yi-app-secrets
+              key: DB_PW
+        # - name: REDIS_HOST
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: yi-app-secrets
+        #       key: REDIS_HOST
+        - name: AWS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: yi-app-secrets
+              key: AWS_KEY
+        - name: AWS_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: yi-app-secrets
+              key: AWS_SECRET
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: yi-msa-member-service
+  namespace: youngil-ns
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: yi-msa-member
